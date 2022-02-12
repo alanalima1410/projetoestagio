@@ -1,0 +1,91 @@
+.legend-border1 {
+    position: absolute;
+    width: 803.5px;
+    height: 62.5px;
+    left: 261px;
+    top: 260px;
+    background: #FFFFFF;
+    text-align: left;
+}
+
+.legend-border2 {
+    position: absolute;
+    width: 803.5px;
+    height: 62.5px;
+    left: 261px;
+    top: 355px;
+    text-align: left
+}
+
+.legend-border3 {
+    position: absolute;
+    width: 316.5px;
+    height: 62.5px;
+    left: 261px;
+    top: 450px;
+    text-align: left
+
+}
+
+.legend-border4 {
+    position: absolute;
+width: 316.5px;
+height: 62.5px;
+left: 261px;
+top: 545px;
+text-align: left
+
+}
+
+.legend-border5 {
+    position: absolute;
+width: 316.5px;
+height: 62.5px;
+left: 260px;
+top: 646px;
+text-align: left
+
+}
+.imageadd {
+    position: absolute;
+width: 150.02px;
+height: 150.02px;
+left: 259px;
+top: 725px;
+
+/* Cinza Claro */
+
+border: 0.847594px dashed #D9D9D9;
+box-sizing: border-box;
+}
+.button  {
+    position: absolute;
+width: 317px;
+height: 68px;
+left: 261px;
+top: 937px;
+bottom: 75px;
+/* Blue 2 */
+background: #0F4C81;
+border-radius: 7px;
+
+position: absolute;
+width: 229px;
+height: 17px;
+left: 305px;
+top: 963px;
+
+font-family: Raleway;
+font-style: normal;
+font-weight: bold;
+font-size: 20px;
+line-height: 17px;
+/* identical to box height, or 85% */
+
+text-align: center;
+letter-spacing: 1px;
+
+color: #FFFFFF;
+justify-content: left;
+
+}

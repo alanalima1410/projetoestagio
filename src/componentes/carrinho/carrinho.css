@@ -1,0 +1,25 @@
+.container {
+    position: relative;
+    width: 803.5px;
+    height: 62.5px;
+    left: 261px;
+    top: 260px;
+    margin-bottom: 30px ;
+    
+}
+.legend-border {
+    font-size: 1.2em !important;
+    text-align: left !important;
+    width: auto;
+    padding: 0 10px;
+    border-bottom: none;
+}
+.menores {
+    position: relative;
+    width: 316.5px;
+    height: 62.5px;
+    left: 261px;
+    
+    
+    
+}

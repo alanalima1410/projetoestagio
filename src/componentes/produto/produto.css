@@ -1,0 +1,26 @@
+.img {
+width: 108px;
+height: 105px;
+left: 261px;
+top: 321px;
+justify-self: left;
+}
+
+.content-product{
+    display:flex;
+    flex-direction: row;
+}
+
+.camera {
+width: 298px;
+height: 28px;
+left: 450px;
+top: 303px;
+
+font-family: Raleway;
+font-style: normal;
+font-weight: bold;
+font-size: 24px;
+line-height: 28px;
+font-feature-settings: 'pnum' on, 'lnum' on;
+}

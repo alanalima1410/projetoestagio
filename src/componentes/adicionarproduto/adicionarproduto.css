@@ -1,0 +1,36 @@
+.adicionarproduto_container {
+    position: absolute;
+    width: 345px;
+    height: 47px;
+    left: 261px;
+    top: 177px;
+    text-align: left;
+    justify-content: left;
+}
+.adicionarproduto_container h1 {
+    position: absolute;
+    width: 345px;
+    height: 47px;
+    left: 261px;
+    top: 177px;
+    text-align: left;
+    justify-content: left;
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 47px;
+    color: #353535;
+    text-align: left;
+    justify-content: left;
+    
+}
+.menores {
+    position: relative;
+    width: 316.5px;
+    height: 62.5px;
+    left: 261px;
+    
+    
+    
+}

@@ -1,0 +1,47 @@
+.Produto{
+    
+    left: 261px;
+    top: 172px;
+    border: 1px solid #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 186;
+    height: 186;
+
+}
+.button {
+    color: #0F4C81;
+}
+.content{
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+}
+.content-img{
+    width:200px;
+    background-color: blue;
+    justify-content: left;
+}
+.content-name{
+    background-color: yellow;
+    flex-direction: column;
+
+}
+.content-action{
+    width:200px;
+    background-color: green;
+}
+.img {
+    width:200px;
+    
+    justify-content: left;
+}
+.name .descricao .valor .cor {
+    background-color: yellow;
+    flex-direction: column;
+}
+.container {
+    flex-direction: row;
+}
