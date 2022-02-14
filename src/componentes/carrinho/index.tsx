@@ -4,13 +4,12 @@ import './carrinho.css';
 function Carrinho (){
     return(
         <>
-        <container>
                 <div>
            <h1>Carrinho</h1>
             
         </div>
 
-        </container>
+     
             <div className="container">
                 <fieldset className="fieldset-border">
                 <legend className="legend-border">Nome do Produto</legend>
