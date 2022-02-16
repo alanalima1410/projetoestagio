@@ -1,55 +1,75 @@
-import { Alert, Button, Snackbar, TextField } from '@mui/material';
+import { Alert, Button, TextField, Snackbar } from '@mui/material';
 import { AxiosResponse } from 'axios';
 import { ProdutoDTO } from 'dtos/produtosDTO';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { NodeAPI } from 'services/Service';
 
-export default function Adicionarproduto() {
-  const [nome, setNome] = useState<string>('');
-  const [valor, setValor] = useState<string>('');
-  const [imagem, setImagem] = useState<string>('');
-  const [idcor, setIdcor] = useState<number>(Number);
-  const [idmarca, setIdmarca] = useState<number>(Number);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [severity, setSeverity] = useState<
-    'success' | 'info' | 'warning' | 'error'
-  >('success');
-  const [produtos, setProdutos] = useState<string>('');
+ export function Editarproduto() {
 
-  async function AdicionarprodutoHandler() {
-    const produtosDTO = new ProdutoDTO(nome,valor,imagem,idcor,idmarca);
+  const [nome, setNome] = useState<string>('');
+  const [valor, setValor] = useState<number>(0);
+  const [imagem, setImagem] = useState<string>('');
+  const [idcor, setIdcor] = useState<number>(0);
+  const [idmarca, setIdmarca] = useState<number>(0);
+  const { id } = useParams();
+  //const navigate = useNavigate();
+
+
+  async function EditarprodutoById() {
+    const editarProduto = new ProdutoDTO(nome,valor,imagem,idcor,idmarca,Number(id));
 
     try {
-      const postResponse: AxiosResponse = await NodeAPI.post(
-        `${process.env.REACT_APP_API_URL}/produto`,
-        produtosDTO
+      await NodeAPI.put(
+        `${process.env.REACT_APP_API_URL}/produto/${id}`,
+        editarProduto
       );
-      setProdutos('Produto cadastrado com sucesso');
-      setSeverity('success');
-      setIsOpen(true);
-
-      setNome('');
-      setValor('');
-      setImagem('');
-      setIdcor(Number);
-      setIdmarca(Number);
-      console.log(postResponse);
+        //navigate('/users') para voltar para home depois de atualizar
     } catch (error) {
-        setProdutos('Produto cadastrado não foi cadastrado');
-      setSeverity('error');
-      setIsOpen(true);
       console.log(error);
     }
   }
 
-  /*
-   useEffect(() => {
-  }, []); 
-  */
+ 
 
-  return (
+
+  async function getProdutoById() {
+          try{
+              const resposta = await NodeAPI.get(`${process.env.REACT_APP_API_URL}/produto/${id}`);
+              // const date = new Date().toISOString().split('T')[0];
+              //const parsedDate = date.split('-')
+              //setName(`${parsedDate[2]}/${parsedDate[1]}/${parsedDate[0]}`);
+              // setName(date.replace(/-/g, '/'));
+              setNome(resposta.data.nome)
+              setValor(resposta.data.valor)
+              setImagem(resposta.data.imagem)
+              setIdcor(resposta.data.idcor)
+              setIdmarca(resposta.data.idmarca)
+          }catch(erro){
+              console.log(erro);
+          }
+      }
+     
+      
+      async function deleteProdutoById() {
+            try {
+              await NodeAPI.delete(`${process.env.REACT_APP_API_URL}/produto/${id}`);
+            } catch (error) {
+      console.log(error);
+    
+    }
+     }
+     
+     useEffect(() => {
+      getProdutoById();
+    }, []); 
+    
+  
+
+return (
     
     <div
+    
       style={{
         height: '500px',
         display: 'flex',
@@ -64,7 +84,9 @@ export default function Adicionarproduto() {
           display: 'flex',
           justifyContent: 'center',
         }}
+        
       >
+        
         <div style={{ width: '100%' }}>
           <div
             style={{
@@ -73,7 +95,10 @@ export default function Adicionarproduto() {
               display: 'flex',
               justifyContent: 'center',
             }}
+            
+  
           >
+            
             <TextField
               value={nome}
               onChange={(event) => setNome(event.target.value)}
@@ -97,7 +122,7 @@ export default function Adicionarproduto() {
               label={'Valor'}
               variant="outlined"
               type={'number'}
-              onChange={(event) => setValor(event.target.value)}
+              onChange={(event) => setValor(Number(event.target.value))}
               style={{ width: '50%', backgroundColor: 'white' }}
             />
           </div>
@@ -135,7 +160,7 @@ export default function Adicionarproduto() {
               label={'Cor'}
               type={'number'}
               variant="outlined"
-              onChange={(event) => setIdcor(Number)}
+              onChange={(event) => setIdcor(Number(event.target.value))}
               style={{ width: '50%', backgroundColor: 'white' }}
             />
           </div>
@@ -154,7 +179,7 @@ export default function Adicionarproduto() {
               label={'Marca'}
               type={'number'}
               variant="outlined"
-              onChange={(event) => setIdmarca(Number)}
+              onChange={(event) => setIdmarca(Number(event.target.value))}
               style={{ width: '50%', backgroundColor: 'white' }}
             />
           </div>
@@ -175,13 +200,18 @@ export default function Adicionarproduto() {
                 width: '100px',
                 backgroundColor: 'blue',
               }}
-              onClick={AdicionarprodutoHandler}
+              onClick={EditarprodutoById}
             >
-              {'Salvar'}
+              {'editar'}
             </Button>
+            
+            
           </div>
         </div>
       </div>
+      
     </div>
   );
+
 }
+

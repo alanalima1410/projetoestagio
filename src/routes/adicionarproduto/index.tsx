@@ -1,41 +1,41 @@
-import { Alert, Button, Snackbar, TextField } from '@mui/material';
-import axios, { AxiosResponse } from 'axios';
+import { Alert, Button, TextField, Snackbar } from '@mui/material';
+import { AxiosResponse } from 'axios';
 import { ProdutoDTO } from 'dtos/produtosDTO';
 import React, { useState, useEffect } from 'react';
 import { NodeAPI } from 'services/Service';
 
-export const Adicionarproduto = () => {
+ export function Adicionarproduto() {
   const [nome, setNome] = useState<string>('');
-  const [valor, setValor] = useState<string>('');
+  const [valor, setValor] = useState<number>(0);
   const [imagem, setImagem] = useState<string>('');
-  const [idcor, setIdcor] = useState<number>(Number);
-  const [idmarca, setIdmarca] = useState<number>(Number);
+  const [idcor, setIdcor] = useState<number>(0);
+  const [idmarca, setIdmarca] = useState<number>(0);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [severity, setSeverity] = useState<
     'success' | 'info' | 'warning' | 'error'
   >('success');
-  const [produtos, setProdutos] = useState<string>('');
+  const [feedbackMessage, setFeedbackMessage] = useState<string>('');
   
   async function AdicionarprodutoHandler() {
-    const produtosDTO = new ProdutoDTO(nome,valor,imagem,idcor,idmarca);
+    const produtoDTO = new ProdutoDTO(nome,valor,imagem,idcor,idmarca);
 
     try {
       const postResponse: AxiosResponse = await NodeAPI.post(
         `${process.env.REACT_APP_API_URL}/produto`,
-        produtosDTO
+        produtoDTO
       );
-      setProdutos('Produto cadastrado com sucesso');
+      setFeedbackMessage('Produto cadastrado com sucesso');
       setSeverity('success');
       setIsOpen(true);
 
       setNome('');
-      setValor('');
+      setValor(0);
       setImagem('');
-      setIdcor(Number);
-      setIdmarca(Number);
+      setIdcor(0);
+      setIdmarca(0);
       console.log(postResponse);
     } catch (error) {
-        setProdutos('Produto cadastrado não foi cadastrado');
+      setFeedbackMessage('Produto cadastrado não foi cadastrado');
       setSeverity('error');
       setIsOpen(true);
       console.log(error);
@@ -43,7 +43,9 @@ export const Adicionarproduto = () => {
   }
 
  
-
+function closeSnackbar(){
+  setIsOpen(false)
+}
   return (
     
     <div
@@ -100,7 +102,7 @@ export const Adicionarproduto = () => {
               label={'Valor'}
               variant="outlined"
               type={'number'}
-              onChange={(event) => setValor(event.target.value)}
+              onChange={(event) => setValor(Number(event.target.value))}
               style={{ width: '50%', backgroundColor: 'white' }}
             />
           </div>
@@ -138,7 +140,7 @@ export const Adicionarproduto = () => {
               label={'Cor'}
               type={'number'}
               variant="outlined"
-              onChange={(event) => setIdcor(Number)}
+              onChange={(event) => setIdcor(Number(event.target.value))}
               style={{ width: '50%', backgroundColor: 'white' }}
             />
           </div>
@@ -157,7 +159,7 @@ export const Adicionarproduto = () => {
               label={'Marca'}
               type={'number'}
               variant="outlined"
-              onChange={(event) => setIdmarca(Number)}
+              onChange={(event) => setIdmarca(Number(event.target.value))}
               style={{ width: '50%', backgroundColor: 'white' }}
             />
           </div>
@@ -185,6 +187,20 @@ export const Adicionarproduto = () => {
           </div>
         </div>
       </div>
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        open={isOpen}
+        autoHideDuration={6000}
+        onClose={closeSnackbar}
+      >
+        <Alert
+          onClose={closeSnackbar}
+          severity={severity}
+          sx={{ width: '100%' }}
+        >
+          {feedbackMessage}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

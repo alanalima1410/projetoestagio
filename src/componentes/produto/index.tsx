@@ -26,15 +26,17 @@ export default function Produto (props:ProdutoProps){
                 <p className='valor'>R${produtoDTO.valor},00</p>
                 {/* <p className='cor'>{produtoDTO.idcor}</p> */}
             </div>
-           <div className="actions"><Button variant="outlined" onClick={()=>{window.location.replace('/editarproduto')}}>
+           <div className="actions"><Button variant="outlined" onClick={()=>{window.location.replace('/editarproduto/'+produtoDTO.id)}}>
             Editar Produto
             </Button>
            <IconButton aria-label="delete"></IconButton>
-           <Button variant="outlined"><DeleteIcon />
+           <Button variant="outlined"onClick={()=>{window.location.replace('/deleteproduto')}}><DeleteIcon />
             </Button>
+            
             <IconButton aria-label="delete"></IconButton>
            <Button variant="outlined"onClick={()=>{window.location.replace('/carrinho')}}><AddShoppingCartIcon />
             </Button>
+
             </div>
            
           
