@@ -51,14 +51,7 @@ import { NodeAPI } from 'services/Service';
       }
      
       
-      async function deleteProdutoById() {
-            try {
-              await NodeAPI.delete(`${process.env.REACT_APP_API_URL}/produto/${id}`);
-            } catch (error) {
-      console.log(error);
-    
-    }
-     }
+      
      
      useEffect(() => {
       getProdutoById();
@@ -204,6 +197,8 @@ return (
             >
               {'editar'}
             </Button>
+            
+            
             
             
           </div>

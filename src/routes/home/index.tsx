@@ -8,6 +8,10 @@ import { Button } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { NodeAPI } from '../../services/Service';
 import { ProdutoDTO } from 'dtos/produtosDTO';
+import { useParams } from 'react-router-dom';
+
+
+
 
 function Home (){
     const [produtos, setProdutos] = useState<Array<ProdutoDTO>>([])
@@ -39,9 +43,14 @@ function Home (){
             
 
         </>
+      
     )
 }
 export default Home;
+
+
+
+
 // import { Alert, Button, TextField } from '@mui/material';
 // import axios, { AxiosResponse } from 'axios';
 // import { ProdutoDTO } from 'dtos/produtosDTO';

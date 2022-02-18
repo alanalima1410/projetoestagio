@@ -1,10 +1,11 @@
 import { Alert, Button, TextField, Snackbar } from '@mui/material';
 import { AxiosResponse } from 'axios';
 import { ProdutoDTO } from 'dtos/produtosDTO';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NodeAPI } from 'services/Service';
 
  export function Adicionarproduto() {
+   const uploadfile:any = useRef();
   const [nome, setNome] = useState<string>('');
   const [valor, setValor] = useState<number>(0);
   const [imagem, setImagem] = useState<string>('');
@@ -46,6 +47,34 @@ import { NodeAPI } from 'services/Service';
 function closeSnackbar(){
   setIsOpen(false)
 }
+//botao uploud
+function openFileExplorer (){
+  uploadfile.current.click();
+    }
+
+
+function handlefile(event: any){
+      parseFileBase64(event.target.files[0])
+      
+  }
+
+function parseFileBase64(file: File){
+      file.text().then(()=> {
+          let reader: FileReader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onloadend = () => {
+              const document: string | ArrayBuffer | null = reader.result;
+                if (typeof document === 'string'){
+                setImagem(
+                  document.slice(document.lastIndexOf(',') +1, document.length)
+                  );
+              console.log(
+              document.slice(document.lastIndexOf(',') +1, document.length)
+              );
+            }
+          };
+      });
+ }
   return (
     
     <div
@@ -115,25 +144,6 @@ function closeSnackbar(){
               justifyContent: 'center',
             }}
           >
-
-              <TextField
-              value={imagem}
-              label={'Imagem'}
-              variant="outlined"
-              type={'imagem'}
-              onChange={(event) => setImagem(event.target.value)}
-              style={{ width: '50%', backgroundColor: 'white' }}
-            />
-          </div>
-
-          <div
-            style={{
-              marginBottom: '15px',
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
             
               <TextField
               value={idcor}
@@ -163,7 +173,25 @@ function closeSnackbar(){
               style={{ width: '50%', backgroundColor: 'white' }}
             />
           </div>
+          <div>
 
+<div style={
+  {width:"100%", height: '150px'}}>
+  <input  
+  ref={uploadfile} 
+  style={{display: "none"}}
+  type="file" 
+  onChange={handlefile}
+  
+ />
+   <img src={`data:image/png;base64,${imagem}`} alt="" /> 
+<Button onClick={openFileExplorer} variant='outlined'>
+        Abrir explorer
+</Button>
+</div>
+                          
+</div>
+              
           <div
             style={{
               marginBottom: '15px',
