@@ -1,25 +1,71 @@
-.container {
-    position: relative;
-    width: 803.5px;
-    height: 62.5px;
-    left: 261px;
-    top: 260px;
-    margin-bottom: 30px ;
+.titulos {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    text-align: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.titulos h1{
+    width: 372px;
+height: 47px;
+left: 261px;
+top: 177px;
+
+font-family: Raleway;
+font-style: normal;
+font-weight: bold;
+font-size: 40px;
+line-height: 47px;
+
+}
+.titulos h2{
+    width: 372px;
+height: 47px;
+left: 1234px;
+top: 177px;
+
+font-family: Raleway;
+font-weight: bold;
+font-size: 25px;
+line-height: 47px;
+}
+
+.conteudocarrinho {
+    margin: auto;
+    display:flex;
+    flex-direction: row;
+    margin-top: 30px;
+    margin-left: 260px;
+    margin-right: 350px;
+    
     
 }
-.legend-border {
-    font-size: 1.2em !important;
-    text-align: left !important;
-    width: auto;
-    padding: 0 10px;
-    border-bottom: none;
+
+.carrinho {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 850px;
+    height: 300px;
+left: 261px;
+top: 262px;
+
+border: 1px solid #B2B2B2;
+box-sizing: border-box;
+border-radius: 7px;
+    
 }
-.menores {
-    position: relative;
-    width: 316.5px;
-    height: 62.5px;
-    left: 261px;
-    
-    
+
+.pedido {
+    width:400px;
+    height: 250px;
+    border: 1px solid #B2B2B2;
+box-sizing: border-box;
+border-radius: 7px;
+background: #f5f5f5;
+margin-left: 30px;
     
 }

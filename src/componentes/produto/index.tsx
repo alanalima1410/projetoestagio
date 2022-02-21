@@ -49,7 +49,7 @@ export default function Produto (props:ProdutoProps){
             </Button>
             
             <IconButton aria-label="carrinho"></IconButton>
-           <Button variant="outlined"onClick={()=>{window.location.replace('/carrinho')}}><AddShoppingCartIcon />
+           <Button variant="outlined"onClick={()=>{window.location.replace('/carrinho/'+produtoDTO.id)}}><AddShoppingCartIcon />
             </Button>
 
             </div>

@@ -4,8 +4,8 @@ import { ProdutoDTO } from 'dtos/produtosDTO';
 import React, { useState, useEffect, useRef } from 'react';
 import { NodeAPI } from 'services/Service';
 
- export function Adicionarproduto() {
-   const uploadfile:any = useRef();
+export function Adicionarproduto() {
+  const uploadfile: any = useRef();
   const [nome, setNome] = useState<string>('');
   const [valor, setValor] = useState<number>(0);
   const [imagem, setImagem] = useState<string>('');
@@ -16,9 +16,9 @@ import { NodeAPI } from 'services/Service';
     'success' | 'info' | 'warning' | 'error'
   >('success');
   const [feedbackMessage, setFeedbackMessage] = useState<string>('');
-  
+
   async function AdicionarprodutoHandler() {
-    const produtoDTO = new ProdutoDTO(nome,valor,imagem,idcor,idmarca);
+    const produtoDTO = new ProdutoDTO(nome, valor, imagem, idcor, idmarca);
 
     try {
       const postResponse: AxiosResponse = await NodeAPI.post(
@@ -43,42 +43,42 @@ import { NodeAPI } from 'services/Service';
     }
   }
 
- 
-function closeSnackbar(){
-  setIsOpen(false)
-}
-//botao uploud
-function openFileExplorer (){
-  uploadfile.current.click();
-    }
 
-
-function handlefile(event: any){
-      parseFileBase64(event.target.files[0])
-      
+  function closeSnackbar() {
+    setIsOpen(false)
+  }
+  //botao uploud
+  function openFileExplorer() {
+    uploadfile.current.click();
   }
 
-function parseFileBase64(file: File){
-      file.text().then(()=> {
-          let reader: FileReader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onloadend = () => {
-              const document: string | ArrayBuffer | null = reader.result;
-                if (typeof document === 'string'){
-                setImagem(
-                  document.slice(document.lastIndexOf(',') +1, document.length)
-                  );
-              console.log(
-              document.slice(document.lastIndexOf(',') +1, document.length)
-              );
-            }
-          };
-      });
- }
+
+  function handlefile(event: any) {
+    parseFileBase64(event.target.files[0])
+
+  }
+
+  function parseFileBase64(file: File) {
+    file.text().then(() => {
+      let reader: FileReader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        const document: string | ArrayBuffer | null = reader.result;
+        if (typeof document === 'string') {
+          setImagem(
+            document.slice(document.lastIndexOf(',') + 1, document.length)
+          );
+          console.log(
+            document.slice(document.lastIndexOf(',') + 1, document.length)
+          );
+        }
+      };
+    });
+  }
   return (
-    
+
     <div
-    
+
       style={{
         height: '500px',
         display: 'flex',
@@ -93,9 +93,9 @@ function parseFileBase64(file: File){
           display: 'flex',
           justifyContent: 'center',
         }}
-        
+
       >
-        
+
         <div style={{ width: '100%' }}>
           <div
             style={{
@@ -104,10 +104,10 @@ function parseFileBase64(file: File){
               display: 'flex',
               justifyContent: 'center',
             }}
-            
-  
+
+
           >
-            
+
             <TextField
               value={nome}
               onChange={(event) => setNome(event.target.value)}
@@ -126,7 +126,7 @@ function parseFileBase64(file: File){
             }}
           >
 
-              <TextField
+            <TextField
               value={valor}
               label={'Valor'}
               variant="outlined"
@@ -144,8 +144,8 @@ function parseFileBase64(file: File){
               justifyContent: 'center',
             }}
           >
-            
-              <TextField
+
+            <TextField
               value={idcor}
               label={'Cor'}
               type={'number'}
@@ -164,7 +164,7 @@ function parseFileBase64(file: File){
             }}
           >
 
-              <TextField
+            <TextField
               value={idmarca}
               label={'Marca'}
               type={'number'}
@@ -175,23 +175,23 @@ function parseFileBase64(file: File){
           </div>
           <div>
 
-<div style={
-  {width:"100%", height: '150px'}}>
-  <input  
-  ref={uploadfile} 
-  style={{display: "none"}}
-  type="file" 
-  onChange={handlefile}
-  
- />
-   <img src={`data:image/png;base64,${imagem}`} alt="" /> 
-<Button onClick={openFileExplorer} variant='outlined'>
-        Abrir explorer
-</Button>
-</div>
-                          
-</div>
-              
+            <div style={
+              { width: "100%", height: '150px' }}>
+              <input
+                ref={uploadfile}
+                style={{ display: "none" }}
+                type="file"
+                onChange={handlefile}
+
+              />
+              <img src={`data:image/png;base64,${imagem}`} alt="" />
+              <Button onClick={openFileExplorer} variant='outlined'>
+                Abrir explorer
+              </Button>
+            </div>
+
+          </div>
+
           <div
             style={{
               marginBottom: '15px',
@@ -200,7 +200,7 @@ function parseFileBase64(file: File){
               justifyContent: 'center',
             }}
           >
-              
+
             <Button
               variant={'contained'}
               style={{

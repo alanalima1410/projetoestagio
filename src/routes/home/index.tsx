@@ -3,7 +3,6 @@ import './home.css';
 import { Link } from 'react-router-dom';
 import Produto from '../../componentes/produto';
 //import { Adicionarproduto } from 'routes/adicionarproduto';
-import Carrinho from "../../componentes/carrinho/index";
 import { Button } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { NodeAPI } from '../../services/Service';

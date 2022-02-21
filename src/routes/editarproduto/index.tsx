@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { NodeAPI } from 'services/Service';
 
- export function Editarproduto() {
+export function Editarproduto() {
 
   const [nome, setNome] = useState<string>('');
   const [valor, setValor] = useState<number>(0);
@@ -17,52 +17,52 @@ import { NodeAPI } from 'services/Service';
 
 
   async function EditarprodutoById() {
-    const editarProduto = new ProdutoDTO(nome,valor,imagem,idcor,idmarca,Number(id));
+    const editarProduto = new ProdutoDTO(nome, valor, imagem, idcor, idmarca, Number(id));
 
     try {
       await NodeAPI.put(
         `${process.env.REACT_APP_API_URL}/produto/${id}`,
         editarProduto
       );
-        //navigate('/users') para voltar para home depois de atualizar
+      //navigate('/users') para voltar para home depois de atualizar
     } catch (error) {
       console.log(error);
     }
   }
 
- 
+
 
 
   async function getProdutoById() {
-          try{
-              const resposta = await NodeAPI.get(`${process.env.REACT_APP_API_URL}/produto/${id}`);
-              // const date = new Date().toISOString().split('T')[0];
-              //const parsedDate = date.split('-')
-              //setName(`${parsedDate[2]}/${parsedDate[1]}/${parsedDate[0]}`);
-              // setName(date.replace(/-/g, '/'));
-              setNome(resposta.data.nome)
-              setValor(resposta.data.valor)
-              setImagem(resposta.data.imagem)
-              setIdcor(resposta.data.idcor)
-              setIdmarca(resposta.data.idmarca)
-          }catch(erro){
-              console.log(erro);
-          }
-      }
-     
-      
-      
-     
-     useEffect(() => {
-      getProdutoById();
-    }, []); 
-    
-  
+    try {
+      const resposta = await NodeAPI.get(`${process.env.REACT_APP_API_URL}/produto/${id}`);
+      // const date = new Date().toISOString().split('T')[0];
+      //const parsedDate = date.split('-')
+      //setName(`${parsedDate[2]}/${parsedDate[1]}/${parsedDate[0]}`);
+      // setName(date.replace(/-/g, '/'));
+      setNome(resposta.data.nome)
+      setValor(resposta.data.valor)
+      setImagem(resposta.data.imagem)
+      setIdcor(resposta.data.idcor)
+      setIdmarca(resposta.data.idmarca)
+    } catch (erro) {
+      console.log(erro);
+    }
+  }
 
-return (
-    
+
+
+
+  useEffect(() => {
+    getProdutoById();
+  }, []);
+
+
+
+  return (
+
     <div
-    
+
       style={{
         height: '500px',
         display: 'flex',
@@ -77,9 +77,9 @@ return (
           display: 'flex',
           justifyContent: 'center',
         }}
-        
+
       >
-        
+
         <div style={{ width: '100%' }}>
           <div
             style={{
@@ -88,10 +88,10 @@ return (
               display: 'flex',
               justifyContent: 'center',
             }}
-            
-  
+
+
           >
-            
+
             <TextField
               value={nome}
               onChange={(event) => setNome(event.target.value)}
@@ -110,7 +110,7 @@ return (
             }}
           >
 
-              <TextField
+            <TextField
               value={valor}
               label={'Valor'}
               variant="outlined"
@@ -129,7 +129,7 @@ return (
             }}
           >
 
-              <TextField
+            <TextField
               value={imagem}
               label={'Imagem'}
               variant="outlined"
@@ -147,8 +147,8 @@ return (
               justifyContent: 'center',
             }}
           >
-            
-              <TextField
+
+            <TextField
               value={idcor}
               label={'Cor'}
               type={'number'}
@@ -167,7 +167,7 @@ return (
             }}
           >
 
-              <TextField
+            <TextField
               value={idmarca}
               label={'Marca'}
               type={'number'}
@@ -185,7 +185,7 @@ return (
               justifyContent: 'center',
             }}
           >
-              
+
             <Button
               variant={'contained'}
               style={{
@@ -197,14 +197,14 @@ return (
             >
               {'editar'}
             </Button>
-            
-            
-            
-            
+
+
+
+
           </div>
         </div>
       </div>
-      
+
     </div>
   );
 

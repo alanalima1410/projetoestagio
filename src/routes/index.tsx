@@ -2,9 +2,10 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./home";
 
-import Carrinho from "../componentes/carrinho/index";
+//import Carrinho from "../componentes/carrinho/index";
 import { Editarproduto } from "./editarproduto/index";
 import { Adicionarproduto } from "./adicionarproduto";
+import { Carrinho } from "componentes/carrinho";
 
 
 const MinhasRotas = () => {
@@ -14,7 +15,7 @@ const MinhasRotas = () => {
            < Route index element={<Home/>}/>
             <Route path="/editarproduto/:id" element={<Editarproduto/>}/>
             <Route path="/adicionarproduto" element={<Adicionarproduto/>}/>
-            <Route path="/carrinho" element={<Carrinho/>}/>
+            <Route path="/carrinho/:id" element={<Carrinho/>}/>
             </Routes>
         
     )
