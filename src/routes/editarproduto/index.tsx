@@ -13,8 +13,8 @@ export function Editarproduto() {
   const [nome, setNome] = useState<string>("");
   const [valor, setValor] = useState<number>(0);
   const [imagem, setImagem] = useState<string>("");
-  const [idcor, setIdcor] = useState<number>(0);
-  const [idmarca, setIdmarca] = useState<number>(0);
+  const [cor, setCor] = useState<string>("");
+  const [marca, setMarca] = useState<string>("");
   const { id } = useParams();
   const [data, setData] = useState<string>(moment().format("L"));
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -28,8 +28,8 @@ export function Editarproduto() {
       nome,
       valor,
       imagem,
-      idcor,
-      idmarca,
+      cor,
+      marca,
       Number(id)
     );
 
@@ -55,8 +55,8 @@ export function Editarproduto() {
       setNome(resposta.data.nome);
       setValor(resposta.data.valor);
       setImagem(resposta.data.imagem);
-      setIdcor(resposta.data.idcor);
-      setIdmarca(resposta.data.idmarca);
+      setCor(resposta.data.cor);
+      setMarca(resposta.data.marca);
     } catch (erro) {
       console.log(erro);
     }
@@ -153,11 +153,10 @@ export function Editarproduto() {
               }}
             >
               <TextField
-                value={idmarca}
+                value={marca}
                 label={"Marca"}
-                type={"number"}
                 variant="outlined"
-                onChange={(event) => setIdmarca(Number(event.target.value))}
+                onChange={(event) => setMarca(event.target.value)}
                 style={{ width: "50%", backgroundColor: "white" }}
               />
             </div>
@@ -190,11 +189,10 @@ export function Editarproduto() {
               }}
             >
               <TextField
-                value={idcor}
+                value={cor}
                 label={"Cor"}
-                type={"number"}
                 variant="outlined"
-                onChange={(event) => setIdcor(Number(event.target.value))}
+                onChange={(event) => setCor(event.target.value)}
                 style={{ width: "50%", backgroundColor: "white" }}
               />
             </div>

@@ -36,9 +36,9 @@ export default function Produto(props: ProdutoProps) {
 
         <div className="details">
           <h2 className="camera">{produtoDTO.nome}</h2>
-          <p className="descricao">Marca: {produtoDTO.idmarca}</p>
+          <p className="descricao">{produtoDTO.marca}</p>
           <p className="valor">R${produtoDTO.valor},00</p>
-          <p className="cor">Cor: {produtoDTO.idcor}</p>
+          <p className="cor">Cor: {produtoDTO.cor}</p>
         </div>
         <div className="actions">
           <Button

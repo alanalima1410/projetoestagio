@@ -13,8 +13,8 @@ export function Adicionarproduto() {
   const [nome, setNome] = useState<string>("");
   const [valor, setValor] = useState<number>(0);
   const [imagem, setImagem] = useState<string>("");
-  const [idcor, setIdcor] = useState<number>(0);
-  const [idmarca, setIdmarca] = useState<number>(0);
+  const [cor, setCor] = useState<string>("");
+  const [marca, setMarca] = useState<string>("");
   const [data, setData] = useState<string>(moment().format("L"));
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [severity, setSeverity] = useState<
@@ -23,7 +23,7 @@ export function Adicionarproduto() {
   const [feedbackMessage, setFeedbackMessage] = useState<string>("");
 
   async function AdicionarprodutoHandler() {
-    const produtoDTO = new ProdutoDTO(nome, valor, imagem, idcor, idmarca);
+    const produtoDTO = new ProdutoDTO(nome, valor, imagem, cor, marca);
 
     try {
       const postResponse: AxiosResponse = await NodeAPI.post(
@@ -37,8 +37,8 @@ export function Adicionarproduto() {
       setNome("");
       setValor(0);
       setImagem("");
-      setIdcor(0);
-      setIdmarca(0);
+      setCor("");
+      setMarca("");
       window.location.replace("/");
       console.log(postResponse);
     } catch (error) {
@@ -137,11 +137,10 @@ export function Adicionarproduto() {
               }}
             >
               <TextField
-                value={idmarca}
+                value={marca}
                 label={"Marca"}
-                type={"number"}
                 variant="outlined"
-                onChange={(event) => setIdmarca(Number(event.target.value))}
+                onChange={(event) => setMarca(event.target.value)}
                 style={{ width: "50%", backgroundColor: "white" }}
               />
             </div>
@@ -174,11 +173,10 @@ export function Adicionarproduto() {
               }}
             >
               <TextField
-                value={idcor}
+                value={cor}
                 label={"Cor"}
-                type={"number"}
                 variant="outlined"
-                onChange={(event) => setIdcor(Number(event.target.value))}
+                onChange={(event) => setCor(event.target.value)}
                 style={{ width: "50%", backgroundColor: "white" }}
               />
             </div>

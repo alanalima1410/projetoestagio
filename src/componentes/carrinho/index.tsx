@@ -13,11 +13,12 @@ export function Carrinho() {
   const [nome, setNome] = useState<string>("");
   const [valor, setValor] = useState<number>(0);
   const [imagem, setImagem] = useState<string>("");
-  const [idcor, setIdcor] = useState<number>(0);
-  const [idmarca, setIdmarca] = useState<number>(0);
+  const [cor, setCor] = useState<string>("");
+  const [marca, setMarca] = useState<string>("");
   const [openPagar, setOpenPagar] = useState<boolean>(false);
   const [notas, setNotas] = useState<Object>({});
   const { id } = useParams();
+  
 
   async function getCarrinhoById() {
     try {
@@ -27,8 +28,8 @@ export function Carrinho() {
       setNome(resposta.data.nome);
       setValor(resposta.data.valor);
       setImagem(resposta.data.imagem);
-      setIdcor(resposta.data.idcor);
-      setIdmarca(resposta.data.idmarca);
+      setCor(resposta.data.cor);
+      setMarca(resposta.data.marca);
     } catch (erro) {
       console.log(erro);
     }
@@ -92,8 +93,8 @@ export function Carrinho() {
 
               <div className="descricao">
                 <h2>{nome}</h2>
-                <p>Marca: {idmarca}</p>
-                <p>Cor: {idcor}</p>
+                <p>{marca}</p>
+                <p>Cor: {cor}</p>
               </div>
             </div>
             <hr></hr>
