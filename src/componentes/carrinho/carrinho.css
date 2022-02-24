@@ -1,14 +1,5 @@
-.titulos {
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    height: 40px;
-    text-align: center;
-    justify-content: center;
-    margin-top: 100px;
-}
 
-.titulos h1{
+ h1{
     width: 372px;
 height: 47px;
 left: 261px;
@@ -19,53 +10,124 @@ font-style: normal;
 font-weight: bold;
 font-size: 40px;
 line-height: 47px;
+margin-bottom: 10px;
 
 }
-.titulos h2{
-    width: 372px;
-height: 47px;
-left: 1234px;
-top: 177px;
-
-font-family: Raleway;
+h2{
+    
+    margin-top: 20px;
+    font-family: Raleway;
+font-style: normal;
 font-weight: bold;
-font-size: 25px;
-line-height: 47px;
+font-size: 24px;
+    
+}
+p{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    
 }
 
 .conteudocarrinho {
-    margin: auto;
     display:flex;
     flex-direction: row;
-    margin-top: 30px;
-    margin-left: 260px;
-    margin-right: 350px;
     
     
 }
 
 .carrinho {
-    justify-content: center;
     display: flex;
-    flex-direction: column;
-    width: 850px;
-    height: 300px;
-left: 261px;
-top: 262px;
-
-border: 1px solid #B2B2B2;
-box-sizing: border-box;
-border-radius: 7px;
+    flex-direction: row;
+    margin-left: 150px;
     
 }
 
-.pedido {
-    width:400px;
-    height: 250px;
+
+
+.bordaa{
     border: 1px solid #B2B2B2;
 box-sizing: border-box;
 border-radius: 7px;
+width: 250px;
+height: 260px;
 background: #f5f5f5;
 margin-left: 30px;
+}
+.borda{
+    border: 1px solid #B2B2B2;
+box-sizing: border-box;
+border-radius: 7px;
+width: 812px;
+height: 360px;
+}
+.getimagem{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.foto {
+    margin-top: 20px;
+
+}
+
+
+h3{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 500px;
+    margin-top: 10px;
+}
+.titulos{
+    margin-top: 40px;
+    margin-left: 50px;
+    flex-direction: row;
+    justify-content: space-between;
+    display: inline-flex;
+    width: 1150px;
+}
+.descricao{
     
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+.quantidade {
+    margin-top: 20px;
+    flex-direction: row;
+    display: flex;
+    padding-inline-end: 10px;
+    margin-right: 5px;
+    margin-left: 10px;
+}
+
+h4{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 500px;
+    margin-top: 20px;
+    margin-left: 400px;
+}
+.pagar{
+    width: 230px;
+}
+.pagamento{
+border: 1px solid #B2B2B2;
+box-sizing: border-box;
+border-radius: 7px;
+width: 425px;
+height: 90px;
+background: green;
+margin-left: 30px;
+position: absolute;
 }

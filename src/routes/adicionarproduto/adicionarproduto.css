@@ -1,36 +1,46 @@
-.adicionarproduto_container {
-    position: absolute;
-    width: 345px;
-    height: 47px;
-    left: 261px;
-    top: 177px;
-    text-align: left;
-    justify-content: left;
+
+.file {
+        margin-bottom: 15px;
+        width: 150px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        width: 150px;
+        height: 150px;
+        border: 1px dashed;
+        box-sizing: border-box;
+        cursor: pointer;
+        margin-left: 1px;
+        padding-left: 5px;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+    }
+
+.botaofile {
+    display: none;
 }
-.adicionarproduto_container h1 {
-    position: absolute;
-    width: 345px;
-    height: 47px;
-    left: 261px;
-    top: 177px;
-    text-align: left;
-    justify-content: left;
-    font-family: Raleway;
-    font-style: normal;
+
+.titulos {
+margin-top: 40px;
+margin-left: 60px;
+}
+h1{
+    margin-top: 5px;
+    font-family: "Raleway" sans-serif;
     font-weight: bold;
     font-size: 40px;
-    line-height: 47px;
     color: #353535;
-    text-align: left;
-    justify-content: left;
-    
+    line-height: 47px;
+    margin-left: 190px;
 }
-.menores {
-    position: relative;
-    width: 316.5px;
-    height: 62.5px;
-    left: 261px;
-    
-    
-    
+.imagem {
+    width: 150px;
+        height: 150px;
+        z-index: 1;
+
+}
+nav.links{
+    margin-right: 1300px;
+    margin-top: 20px;
 }

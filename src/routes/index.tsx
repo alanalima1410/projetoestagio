@@ -2,7 +2,6 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./home";
 
-//import Carrinho from "../componentes/carrinho/index";
 import { Editarproduto } from "./editarproduto/index";
 import { Adicionarproduto } from "./adicionarproduto";
 import { Carrinho } from "componentes/carrinho";

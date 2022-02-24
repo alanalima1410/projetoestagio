@@ -1,66 +1,112 @@
-import { ProdutoDTO } from 'dtos/produtosDTO';
-import React, { useState, useEffect } from 'react';
-import './produto.css';
-import { Button } from '@mui/material';
-import Stack from '@mui/material/Stack';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { useParams } from 'react-router-dom';
-import { NodeAPI } from 'services/Service';
-
+import { ProdutoDTO } from "dtos/produtosDTO";
+import React, { useState, useEffect } from "react";
+import "./produto.css";
+import { Button } from "@mui/material";
+import Stack from "@mui/material/Stack";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { useParams } from "react-router-dom";
+import { NodeAPI } from "services/Service";
 
 type ProdutoProps = {
-    produtoDTO:ProdutoDTO;
-}
+  produtoDTO: ProdutoDTO;
+};
 
-export default function Produto (props:ProdutoProps){
-    const {produtoDTO} = props
-    
-    async function deleteProdutoById(apagar:number) {
-        
-        try {
-          await NodeAPI.delete(`${process.env.REACT_APP_API_URL}/produto/${apagar}`);
-        } catch (error) {
-    console.log(error);
-    
+export default function Produto(props: ProdutoProps) {
+  const { produtoDTO } = props;
+
+  async function deleteProdutoById(apagar: number) {
+    try {
+      await NodeAPI.delete(
+        `${process.env.REACT_APP_API_URL}/produto/${apagar}`
+      );
+      window.location.replace("/");
+    } catch (error) {
+      console.log(error);
     }
-    }
-   
-    return(
-        <>
-          
-        <section className='content-product'>
-            <div className="img" >
-                <img className="img" src={"data:image/jpeg;base64," + produtoDTO.imagem} alt=''/>
-            </div>
-            
-            <div className="details">
-                <h2 className='camera'>{produtoDTO.nome}</h2>
-                {/* <p className='descricao'>{produtoDTO.idmarca}</p> */}
-                <p className='valor'>R${produtoDTO.valor},00</p>
-                {/* <p className='cor'>{produtoDTO.idcor}</p> */}
-            </div>
-           <div className="actions"><Button variant="outlined" onClick={()=>{window.location.replace('/editarproduto/'+produtoDTO.id)}}>
-            Editar Produto
-            </Button>
-            <Button>
-           {produtoDTO.id?<DeleteIcon aria-label="delete" onClick={()=>{deleteProdutoById(Number(produtoDTO.id))}}></DeleteIcon>:<></>}
-            </Button>
-            
-            <IconButton aria-label="carrinho"></IconButton>
-           <Button variant="outlined"onClick={()=>{window.location.replace('/carrinho/'+produtoDTO.id)}}><AddShoppingCartIcon />
-            </Button>
+  }
 
-            </div>
-            
-      
-          
-        </section>
-        
+  return (
+    <>
+      <section className="content-product">
+        <div className="img">
+          <img src={"data:image/jpeg;base64," + produtoDTO.imagem} alt="" />
+        </div>
 
+        <div className="details">
+          <h2 className="camera">{produtoDTO.nome}</h2>
+          <p className="descricao">Marca: {produtoDTO.idmarca}</p>
+          <p className="valor">R${produtoDTO.valor},00</p>
+          <p className="cor">Cor: {produtoDTO.idcor}</p>
+        </div>
+        <div className="actions">
+          <Button
+            onClick={() => {
+              window.location.replace("/editarproduto/" + produtoDTO.id);
+            }}
+          >
+            <svg
+              width="64"
+              height="64"
+              viewBox="0 0 64 64"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="32"
+                cy="32"
+                r="31.1579"
+                stroke="#0F4C81"
+                stroke-width="1.68421"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M43.4883 20.2106C42.9617 20.2106 42.4567 20.4198 42.0844 20.7921L29.5867 33.2897L28.6508 37.0334L32.3945 36.0975L44.8922 23.5999C45.2645 23.2275 45.4737 22.7225 45.4737 22.196C45.4737 21.6694 45.2645 21.1644 44.8922 20.7921C44.5198 20.4198 44.0148 20.2106 43.4883 20.2106ZM40.8934 19.6012C41.5816 18.913 42.515 18.5264 43.4883 18.5264C44.4615 18.5264 45.3949 18.913 46.0831 19.6012C46.7713 20.2894 47.1579 21.2227 47.1579 22.196C47.1579 23.1692 46.7713 24.1026 46.0831 24.7908L33.4205 37.4534C33.3126 37.5613 33.1774 37.6378 33.0293 37.6749L27.6977 39.0078C27.4107 39.0795 27.1071 38.9954 26.898 38.7863C26.6888 38.5771 26.6047 38.2735 26.6765 37.9866L28.0094 32.655C28.0464 32.5069 28.123 32.3717 28.2309 32.2637L40.8934 19.6012ZM19.6814 22.3813C20.3392 21.7234 21.2315 21.3538 22.1618 21.3538H31.4921C31.9572 21.3538 32.3343 21.7309 32.3343 22.1959C32.3343 22.661 31.9572 23.038 31.4921 23.038H22.1618C21.6782 23.038 21.2143 23.2302 20.8723 23.5722C20.5303 23.9142 20.3381 24.3781 20.3381 24.8617V43.5224C20.3381 44.006 20.5303 44.4699 20.8723 44.8119C21.2143 45.1539 21.6782 45.3461 22.1618 45.3461H40.8225C41.3061 45.3461 41.77 45.1539 42.112 44.8119C42.454 44.4699 42.6462 44.006 42.6462 43.5224V34.1921C42.6462 33.727 43.0232 33.3499 43.4883 33.3499C43.9533 33.3499 44.3304 33.727 44.3304 34.1921V43.5224C44.3304 44.4527 43.9608 45.345 43.3029 46.0028C42.6451 46.6607 41.7528 47.0303 40.8225 47.0303H22.1618C21.2315 47.0303 20.3392 46.6607 19.6814 46.0028C19.0235 45.345 18.6539 44.4527 18.6539 43.5224V24.8617C18.6539 23.9314 19.0235 23.0391 19.6814 22.3813Z"
+                fill="#0F4C81"
+              />
+            </svg>
+          </Button>
+          <Button>
+            {produtoDTO.id ? (
+              <DeleteIcon
+                onClick={() => {
+                  deleteProdutoById(Number(produtoDTO.id));
+                }}
+              ></DeleteIcon>
+            ) : (
+              <></>
+            )}
+          </Button>
 
-        </>
-    )
+          <Button
+            onClick={() => {
+              window.location.replace("/carrinho/" + produtoDTO.id);
+            }}
+          >
+            <svg
+              width="64"
+              height="64"
+              viewBox="0 0 64 64"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="32"
+                cy="32"
+                r="31.181"
+                stroke="#0F4C81"
+                stroke-width="1.63791"
+              />
+              <path
+                d="M44.691 33.9435L46.3347 24.6464C46.3559 24.5262 46.3512 24.4027 46.3209 24.2845C46.2906 24.1664 46.2355 24.0565 46.1593 23.9627C46.0832 23.8689 45.988 23.7934 45.8803 23.7416C45.7727 23.6898 45.6554 23.663 45.5365 23.663H23.4992L22.7985 19.6996C22.7193 19.2509 22.4895 18.8451 22.1492 18.553C21.8088 18.2608 21.3795 18.1009 20.9361 18.1011H18.4956C18.2804 18.1011 18.0741 18.189 17.9219 18.3454C17.7698 18.5019 17.6843 18.7141 17.6843 18.9354C17.6843 19.1566 17.7698 19.3688 17.9219 19.5253C18.0741 19.6817 18.2804 19.7696 18.4956 19.7696H20.936C20.9994 19.7695 21.0608 19.7924 21.1094 19.8341C21.1581 19.8758 21.1909 19.9338 21.2022 19.998L24.942 41.1523C24.4132 41.5905 24.0191 42.1769 23.8074 42.8405C23.5957 43.5042 23.5755 44.2167 23.7491 44.8919C23.9226 45.5671 24.2827 46.1762 24.7856 46.6455C25.2886 47.1148 25.913 47.4243 26.5833 47.5365C27.2536 47.6487 27.9412 47.5588 28.5629 47.2778C29.1846 46.9967 29.7139 46.5365 30.0867 45.9528C30.4596 45.369 30.6601 44.6867 30.6639 43.9883C30.6678 43.2899 30.4749 42.6053 30.1086 42.0172H38.2501C37.8301 42.6935 37.6409 43.4943 37.7124 44.2935C37.7839 45.0926 38.112 45.8445 38.645 46.4306C39.178 47.0167 39.8855 47.4037 40.656 47.5306C41.4265 47.6574 42.2162 47.5169 42.9005 47.1311C43.5847 46.7454 44.1247 46.1364 44.4351 45.4002C44.7456 44.664 44.809 43.8424 44.6153 43.065C44.4215 42.2877 43.9817 41.5988 43.3651 41.1069C42.7485 40.6151 41.9903 40.3483 41.21 40.3486H26.4491L25.7609 36.4553H41.7646C42.4612 36.4556 43.1359 36.2043 43.6707 35.7452C44.2055 35.2861 44.5666 34.6485 44.691 33.9435V33.9435ZM29.0415 43.9638C29.0415 44.3488 28.9305 44.7252 28.7225 45.0453C28.5145 45.3655 28.2189 45.615 27.873 45.7623C27.5272 45.9096 27.1466 45.9482 26.7794 45.8731C26.4122 45.798 26.0749 45.6126 25.8102 45.3403C25.5455 45.0681 25.3652 44.7212 25.2922 44.3436C25.2191 43.966 25.2566 43.5746 25.3999 43.2189C25.5432 42.8632 25.7858 42.5591 26.097 42.3452C26.4083 42.1313 26.7743 42.0172 27.1487 42.0172C27.6505 42.0178 28.1316 42.223 28.4865 42.588C28.8414 42.9529 29.041 43.4477 29.0415 43.9638ZM43.1029 43.9638C43.1029 44.3488 42.9918 44.7252 42.7838 45.0453C42.5759 45.3655 42.2802 45.615 41.9344 45.7623C41.5885 45.9096 41.2079 45.9482 40.8407 45.8731C40.4735 45.798 40.1362 45.6126 39.8715 45.3403C39.6068 45.0681 39.4265 44.7212 39.3535 44.3436C39.2804 43.966 39.3179 43.5746 39.4612 43.2189C39.6045 42.8632 39.8471 42.5591 40.1584 42.3452C40.4696 42.1313 40.8356 42.0172 41.21 42.0172C41.7118 42.0178 42.193 42.223 42.5478 42.588C42.9027 42.9529 43.1023 43.4477 43.1029 43.9638V43.9638ZM23.7942 25.3315H44.5644L43.0947 33.6451C43.0382 33.9655 42.8741 34.2554 42.631 34.464C42.3879 34.6726 42.0812 34.7869 41.7646 34.7867H25.4658L23.7942 25.3315Z"
+                fill="#0F4C81"
+              />
+            </svg>
+          </Button>
+        </div>
+      </section>
+    </>
+  );
 }
-{/* <Button variant="outlined"onClick={}><DeleteIcon /> */}
