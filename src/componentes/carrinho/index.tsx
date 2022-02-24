@@ -6,6 +6,7 @@ import { NodeAPI } from "services/Service";
 import { setConstantValue } from "typescript";
 import "./carrinho.css";
 import { Link } from "react-router-dom";
+import { Restore } from "@mui/icons-material";
 
 export function Carrinho() {
   const uploadfile: any = useRef();
@@ -15,10 +16,9 @@ export function Carrinho() {
   const [imagem, setImagem] = useState<string>("");
   const [cor, setCor] = useState<string>("");
   const [marca, setMarca] = useState<string>("");
-  const [openPagar, setOpenPagar] = useState<boolean>(false);
-  const [notas, setNotas] = useState<Object>({});
+  const [openPagar, setOpenPagar] = useState<object>({});
+  const [cedulas, setCedulas] = useState<boolean>(false);
   const { id } = useParams();
-  
 
   async function getCarrinhoById() {
     try {
@@ -65,10 +65,33 @@ export function Carrinho() {
   function soma() {
     return (subtotal = valor * cont); //subtotal é o valor vezes a quantidade
   }
-  function total() {//total é subtotal mais frete
+  function total() {
+    //total é subtotal mais frete
     return soma() / 10 + soma();
   }
 
+  function pagamento(total: number) {
+    console.log(total);
+    setCedulas(true);
+    const counterCedulas = {
+      200: 0,
+      100: 0,
+      50: 0,
+      20: 0,
+      10: 0,
+      5: 0,
+      2: 0,
+    };
+    var resto = total;
+    for (var c = Object.keys(counterCedulas).length - 1; c >= 0; c--) {
+      const currentCedula = Number(Object.keys(counterCedulas)[c]);
+      const div = Math.floor(resto / currentCedula);
+      counterCedulas[currentCedula] += div;
+      resto -= div * currentCedula;
+    }
+    setOpenPagar(counterCedulas);
+    return resto;
+  }
 
   return (
     <>
@@ -172,7 +195,12 @@ export function Carrinho() {
             <hr></hr>
             <p>Valor Total R${total()},00</p>
             <hr></hr>
-            <button className="btpagar" onClick={() => setOpenPagar(true)}>
+            <button
+              className="btpagar"
+              onClick={(event) => {
+                pagamento(total());
+              }}
+            >
               <svg
                 className="pagar"
                 width="373"
@@ -191,9 +219,14 @@ export function Carrinho() {
           </div>
         </div>
       </div>
-      {openPagar && (
+      {cedulas && (
         <div className="pagamento">
           <p>Pagamento realizado com sucesso!</p>
+          <h2>
+            {Object.entries(openPagar).map((it) => {
+              if (it[1] > 0) return <p>{`Este pagamento foi realizado com ${it[1]} cédulas de R$${it[0]}`}</p>;
+            })}
+          </h2>
         </div>
       )}
     </>

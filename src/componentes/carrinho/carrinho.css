@@ -123,12 +123,14 @@ h4{
     width: 230px;
 }
 .pagamento{
-border: 1px solid #B2B2B2;
+border: 1px solid #039500;
 box-sizing: border-box;
 border-radius: 7px;
 width: 425px;
-height: 90px;
-background: green;
+height: 330px;
+color: #039500;
 margin-left: 30px;
 position: absolute;
+right: 80px;
+top: 500px;
 }
